@@ -23,10 +23,6 @@ from ftrack_api.exception import (AccessorOperationFailedError,
 
 class S3File(FileWrapper):
     """S3 Buffered File.
-
-    TODO: Implement read/write restriction based on mode. Should that be at the
-    base data level?
-
     """
 
     def __init__(self, key, mode='rb'):
@@ -217,7 +213,6 @@ class S3Accessor(Accessor):
             # Truncate file
             s3_object.put(Body='')
 
-        # TODO: Optimise to avoid having entire file in memory.
         data = S3File(s3_object, mode=mode)
         return data
 
@@ -253,7 +248,7 @@ class S3Accessor(Accessor):
             raise AccessorParentResourceNotFoundError(
                 resource_identifier,
                 message='Could not determine container for '
-                        '{resourceIdentifier} as it is the root.'
+                        '{resource_identifier} as it is the root.'
             )
 
         return os.path.dirname(resource_identifier.rstrip('/'))
