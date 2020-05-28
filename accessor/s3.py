@@ -183,7 +183,7 @@ class S3Accessor(Accessor):
             return True
 
     def is_sequence(self, resource_identifier):
-        """Return whether *resourceIdentifier* refers to a file sequence."""
+        """Return whether *resource_identifier* refers to a file sequence."""
         raise AccessorUnsupportedOperationError('is_sequence')
 
     def open(self, resource_identifier, mode='rb'):

@@ -1,4 +1,3 @@
 .idea/
-*.csv
 *.pyc
-/scripts/*.py
+.env
