@@ -26,6 +26,10 @@ Create a storage bucket in s3 and set the bucket name using the FTRACK_S3_ACCESS
 
 Set all other ftrack environment variables for your ftrack instance. You can do so using an .env file for all your env vars which will automatically be loaded by pipenv when running scripts.
 
+Running the scripts from within your pipenv requires you to additionally set your sources root to the accessor directory within your .env file.
+
+    PYTHONPATH=./accessor` 
+
 Ensure you have an working aws configuration under your ~/.aws folder. You can check this by running:
     
     pipenv run python
@@ -46,4 +50,4 @@ Examples of how to use the plugin can be found in the scripts folder. The simple
 
 Which will launch the start_ftrack_with_s3.py script. 
 
-It is possible to use the [transfer components](https://bitbucket.org/!api/2.0/snippets/ftrack/B6dX/f9e89e8bf95065a6fc0541dd058863ff1ddaceb6/files/transfer_components_action.py) action to move components between local and remote storage. Ensure it is on the FTRACK_EVENT_PLUGIN_PATH (or add it to the plugins folder) and it should become available under ftracks actions menu. You will need to ensure your local storage is also correctly configured within a script when running the accessor outside of connect.
+It is possible to use the [transfer components](https://bitbucket.org/!api/2.0/snippets/ftrack/B6dX/f9e89e8bf95065a6fc0541dd058863ff1ddaceb6/files/transfer_components_action.py) action to move components between local and remote storage. Ensure it is on the FTRACK_EVENT_PLUGIN_PATH (or add it to the plugins folder) and it should become available under ftracks actions menu. You will need to ensure your local storage is also correctly configured within a script when running the accessor outside of ftrack-connect, as the connect location configured by the desktop client will not be available as an option.
