@@ -43,14 +43,16 @@ class S3File(FileWrapper):
         position = self.tell()
         self.seek(0)
         self.key.download_fileobj(self.wrapped_file)
-        self.seek(position)
+        if not self.wrapped_file.closed:
+            self.seek(position)
 
     def _write(self):
         """Write current data to remote key."""
         position = self.tell()
         self.seek(0)
         self.key.upload_fileobj(self.wrapped_file)
-        self.seek(position)
+        if not self.wrapped_file.closed:
+            self.seek(position)
 
 
 class S3Accessor(Accessor):
@@ -213,8 +215,7 @@ class S3Accessor(Accessor):
             # Truncate file
             s3_object.put(Body='')
 
-        data = S3File(s3_object, mode=mode)
-        return data
+        return S3File(s3_object, mode=mode)
 
     def remove(self, resource_identifier):
         """Remove *resourceIdentifier*.
