@@ -32,6 +32,7 @@ def register(session):
     logging.info('Registering s3 accessor')
 
     session.event_hub.subscribe(
-        'topic=ftrack.api.session.configure-location',
-        configure_locations
+        'topic=ftrack.api.session.configure-location and source.user.username={}'.format(
+            session.api_user
+        ), configure_locations
     )
