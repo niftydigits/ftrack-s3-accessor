@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 ftrack-python-api = "*"
 boto3 = "*"
-ftrack-action-handler = {editable = true,git = "https://bitbucket.org/ftrack/ftrack-action-handler.git",ref = "0.2.1"}
+ftrack-action-handler = "*"
 
 [requires]
 python_version = "2.7"
