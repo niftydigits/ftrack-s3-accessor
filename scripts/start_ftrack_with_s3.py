@@ -12,7 +12,7 @@ plugin_logger.setLevel(logging.INFO)
 
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
-sys.path.append(os.path.join(root_dir, "accessor"))
+sys.path.append(os.path.join(root_dir, "ftrack_s3_accessor"))
 
 plugin_paths = [os.path.join(root_dir, "plugins")]
 

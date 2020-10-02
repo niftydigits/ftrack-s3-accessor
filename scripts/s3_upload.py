@@ -1,5 +1,5 @@
 import ftrack_api.structure.id
-from s3 import S3Accessor
+from ftrack_s3_accessor.s3 import S3Accessor
 import os
 
 '''

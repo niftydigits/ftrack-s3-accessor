@@ -5,7 +5,7 @@ import ftrack_api.structure.id
 import logging
 import os
 
-from s3 import S3Accessor
+from ftrack_s3_accessor.s3 import S3Accessor
 
 
 def configure_locations(event):
@@ -24,6 +24,13 @@ def configure_locations(event):
     location.priority = 30
 
     # Setup any other locations you require
+    # ftrack_location = session.query(
+    #     'Location where name is "ftrack.connect"'
+    # ).one()
+    # ftrack_location.structure = ftrack_api.structure.id.IdStructure()
+    # ftrack_location.accessor = ftrack_api.accessor.disk.DiskAccessor(
+    #     prefix="/home/ian/ftrack_storage"
+    # )
 
 
 def register(session):
