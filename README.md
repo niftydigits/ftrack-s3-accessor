@@ -8,15 +8,9 @@ An ftrack s3 accessor updated to work with ftrack-python-api and boto3.
 
 ## Installation
 
-Install python using pyenv:
+Install using pip:
     
-    pyenv install
-
-Install dependencies using pipenv (and python pyenv from above):
-
-    pipenv install --python $(pyenv which python)
-
-Note: To be able to make use the transfer components action, and be compatible with ftrack-connect the pipenv uses python 2.7. It works using other versions of python - remove the Pipfile.lock and the transfer_component dependency from the Pipfile, update the python version in .python-version and the Pipfile and re-run the install command.
+    pip install ftrack-s3-accessor
 
 ## Configuration
 
@@ -28,13 +22,9 @@ Set all other ftrack environment variables for your ftrack instance. You can do 
 
 Running the scripts from within your pipenv requires you to additionally set your sources root to the accessor directory within your .env file.
 
-    PYTHONPATH=./accessor` 
+    PYTHONPATH=./ftrack_s3_accessor
 
 Ensure you have an working aws configuration under your ~/.aws folder. You can check this by running:
-    
-    pipenv run python
-
-and then running:
     
     import boto3
 

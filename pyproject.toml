@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "ftrack-s3-accessor"
+version = "0.1.5"
+description = "A ftrack s3 accessor updated to work with ftrack-python-api and boto3."
+authors = ["Ian Wootten <hi@niftydigits.com>"]
+license = "Apache 2"
+readme = "README.md"
+homepage = "https://github.com/niftydigits/ftrack-s3-accessor"
+repository = "https://github.com/niftydigits/ftrack-s3-accessor"
+
+include = [
+    "LICENSE.md",
+]
+
+[tool.poetry.dependencies]
+python = "~2.7 || ^3.8"
+boto3 = "^1.15.10"
+ftrack-python-api = "^2.0.0"
+ftrack-action-handler = "^0.2.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
