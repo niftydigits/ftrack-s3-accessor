@@ -1,12 +1,12 @@
-name: Test PyPI Release
+name: Publish Test
 on:
   push:
     tags:
-      - '*.*.*.pre'
+      - '*.*.*a[0-9]{1}'
 
 jobs:
   test_pypi_release:
-    name: Builds Using Poetry and Publishes to Test PyPI
+    name: Build and Publish to Test PyPI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
