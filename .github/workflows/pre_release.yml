@@ -1,8 +1,8 @@
-name: Publish Test
+name: Publish to Test PyPI
 on:
   push:
     tags:
-      - '*.*.*a*'
+      - '*.*.*'
 
 jobs:
   test_pypi_release:
