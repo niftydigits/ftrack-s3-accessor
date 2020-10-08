@@ -2,7 +2,7 @@ name: Publish Test
 on:
   push:
     tags:
-      - '*.*.*a[0-9]{1}'
+      - '*.*.*a*'
 
 jobs:
   test_pypi_release:
