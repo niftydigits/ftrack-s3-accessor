@@ -1,0 +1,27 @@
+name: CI
+on:
+  push:
+    tags:
+      - '*.*.*.pre'
+
+jobs:
+  test_pypi_release:
+    name: Builds Using Poetry and Publishes to Test PyPI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Install Poetry
+        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      - name: Add Poetry to path
+        run: echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
+      - name: Install venv
+        run: poetry install
+      - name: Build
+        run: poetry build
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          user: __token__
+          password: ${{ secrets.TEST_PYPI_API_KEY }}
+          repository_url: https://test.pypi.org/legacy/
