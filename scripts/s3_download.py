@@ -2,7 +2,7 @@ import ftrack_api.structure.id
 import ftrack_api.accessor.disk
 import os
 
-from s3 import S3Accessor
+from ftrack_s3_accessor.s3 import S3Accessor
 
 '''
 Copies a component from a s3 location to a local location
