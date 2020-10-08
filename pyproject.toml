@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ftrack-s3-accessor"
-version = "0.1.7a0"
+version = "0.1.7a1"
 description = "A ftrack s3 accessor updated to work with ftrack-python-api and boto3."
 authors = ["Ian Wootten <hi@niftydigits.com>"]
 license = "Apache 2"
