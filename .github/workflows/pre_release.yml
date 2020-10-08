@@ -6,7 +6,6 @@ on:
 
 jobs:
   test_pypi_release:
-    name: Publish to Test PyPI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
