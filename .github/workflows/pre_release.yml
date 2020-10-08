@@ -6,7 +6,7 @@ on:
 
 jobs:
   test_pypi_release:
-    name: Build and Publish to Test PyPI
+    name: Publish to Test PyPI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,5 +18,7 @@ jobs:
       - run: poetry install
       - run: poetry run pytest
       - run: poetry build
+      - run: poetry config repositories.testpypi https://test.pypi.org/legacy/
+      - run: poetry publish --dry-run
       - name: Publish package
         run: poetry publish -r testpypi --username __token__ --password ${{ secrets.TEST_PYPI_API_KEY }}
