@@ -3,6 +3,7 @@
 An ftrack s3 accessor updated to work with ftrack-python-api and boto3. 
 
 ## Requirements: 
+- ftrack-python-api
 - boto3 - if used standalone 
 - ftrack-action-handler (optional) - if used with the transfer components action found [here](https://bitbucket.org/!api/2.0/snippets/ftrack/B6dX/f9e89e8bf95065a6fc0541dd058863ff1ddaceb6/files/transfer_components_action.py)
 
@@ -11,6 +12,10 @@ An ftrack s3 accessor updated to work with ftrack-python-api and boto3.
 Install using pip:
     
     pip install ftrack-s3-accessor
+
+Or with the action handler:
+
+    pip install ftrack-s3-accessor['action']
 
 ## Configuration
 
