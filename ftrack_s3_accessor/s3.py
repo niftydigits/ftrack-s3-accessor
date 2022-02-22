@@ -12,6 +12,7 @@ except ImportError:
     pass
 
 from ftrack_api.accessor.base import Accessor
+from ftrack_api.exception import AccessorFilesystemPathError
 from ftrack_api.data import FileWrapper
 from ftrack_api.exception import (AccessorOperationFailedError,
                                   AccessorUnsupportedOperationError,
@@ -293,7 +294,9 @@ class S3Accessor(Accessor):
         s3_object = self.bucket.Object(resource_identifier)
         try:
             location = boto3.client('s3').get_bucket_location(Bucket=self.bucket_name)['LocationConstraint']
-            url = "https://s3-{}.amazonaws.com/{}/{}".format(location, self.bucket_name, s3_object.key)
-        except Exception:
-            url = 'Missing, GetBucketLocation option.... please enable on the bucket to render component path.'
-        return url
+        except botocore.exceptions.ClientError as boto_error:
+            raise AccessorFilesystemPathError(
+                message=f'Could not compute url for {resource_identifier} due to error: {boto_error}'
+            )
+
+        return f"https://s3-{location}.amazonaws.com/{self.bucket_name}/{s3_object.key}"
