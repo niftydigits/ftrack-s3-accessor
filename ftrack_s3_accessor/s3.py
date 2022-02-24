@@ -18,7 +18,8 @@ from ftrack_api.exception import (AccessorOperationFailedError,
                                   AccessorResourceInvalidError,
                                   AccessorResourceNotFoundError,
                                   AccessorContainerNotEmptyError,
-                                  AccessorParentResourceNotFoundError)
+                                  AccessorParentResourceNotFoundError,
+                                  AccessorFilesystemPathError)
 
 
 class S3File(FileWrapper):
@@ -287,3 +288,15 @@ class S3Accessor(Accessor):
 
         s3_object = self.bucket.Object(resource_identifier)
         s3_object.put(Body='')
+
+    def get_url(self, resource_identifier=None):
+        '''Return url for *resource_identifier*.'''
+        s3_object = self.bucket.Object(resource_identifier)
+        try:
+            location = boto3.client('s3').get_bucket_location(Bucket=self.bucket_name)['LocationConstraint']
+        except botocore.exceptions.ClientError as boto_error:
+            raise AccessorFilesystemPathError(
+                message=f'Could not compute url for {resource_identifier} due to error: {boto_error}'
+            )
+
+        return f"https://s3-{location}.amazonaws.com/{self.bucket_name}/{s3_object.key}"
