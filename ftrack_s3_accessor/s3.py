@@ -12,14 +12,14 @@ except ImportError:
     pass
 
 from ftrack_api.accessor.base import Accessor
-from ftrack_api.exception import AccessorFilesystemPathError
 from ftrack_api.data import FileWrapper
 from ftrack_api.exception import (AccessorOperationFailedError,
                                   AccessorUnsupportedOperationError,
                                   AccessorResourceInvalidError,
                                   AccessorResourceNotFoundError,
                                   AccessorContainerNotEmptyError,
-                                  AccessorParentResourceNotFoundError)
+                                  AccessorParentResourceNotFoundError,
+                                  AccessorFilesystemPathError)
 
 
 class S3File(FileWrapper):
